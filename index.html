@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Damaris Goumtsop</title>
-<meta name="description" content="Damaris Goumtsop — software engineer in the DC area. CS at George Mason University, backend systems and data.">
+<meta name="description" content="Damaris Goumtsop — Computer Science student at George Mason University, class of 2027. Backend systems, data, and the occasional Premier League model.">
 <link rel="icon" href="https://avatars.githubusercontent.com/u/117386587?v=4">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,6 +21,7 @@
   --accent-tint: rgba(100, 181, 255, .1);
   --ok: #64ffb0;
   --bad: #ff7a90;
+  --warn: #f5c26b;
   --font: "NTR", -apple-system, "Segoe UI", Roboto, sans-serif;
   --mono: "JetBrains Mono", ui-monospace, monospace;
 }
@@ -141,24 +142,12 @@ section { padding: 110px 0; }
 .sliders label { display: grid; grid-template-columns: 56px 1fr 36px; gap: 8px; align-items: center; color: var(--slate-2); }
 input[type=range] { accent-color: var(--accent); width: 100%; }
 
-/* project cards */
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
-.card { background: var(--navy-2); border-radius: 6px; padding: 30px 28px 26px; display: flex; flex-direction: column; box-shadow: 0 10px 30px -15px rgba(2, 12, 27, .7); transition: transform .25s cubic-bezier(.645,.045,.355,1); }
-.card:hover { transform: translateY(-7px); }
-.card:hover h4 { color: var(--accent); }
-.card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; color: var(--accent); }
-.card-top .gh { color: var(--slate-2); }
-.card-top .gh:hover { color: var(--accent); }
-.card h4 { font-size: 24px; color: var(--white); line-height: 1.15; margin-bottom: 10px; transition: color .2s; }
-.card p { font-size: 18px; flex: 1; margin-bottom: 20px; }
-.card .techline { margin: 0; }
-.tagline { font: 12px var(--mono); color: #f5c26b; margin-bottom: 8px; }
-
-/* off the clock */
-.life { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.life .card { padding: 0; overflow: hidden; }
-.life .art { height: 150px; display: grid; place-items: center; background: radial-gradient(100% 100% at 50% 0%, #1a3563, var(--navy-2)); color: var(--accent); border-bottom: 1px solid var(--navy-3); }
-.life .body { padding: 22px 24px 24px; }
+.overline.wip { color: var(--warn); }
+.steps { list-style: none; font: 13px/2.1 var(--mono); color: var(--slate); }
+.steps li::before { content: "[ ] "; color: var(--navy-3); }
+.steps li.done::before { content: "[x] "; color: var(--ok); }
+.steps li.now { color: var(--warn); }
+.steps li.now::before { content: "[~] "; color: var(--warn); }
 
 /* contact */
 #contact { text-align: center; max-width: 620px; margin: 0 auto; padding: 120px 32px 100px; }
@@ -183,7 +172,6 @@ footer a:hover { color: var(--accent); }
   .slide .copy { padding: 36px 28px 28px; }
   .arrow { top: 30px; translate: none; }
   .arrow.prev { left: auto; right: 52px; } .arrow.next { right: 8px; }
-  .grid, .life { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   body { font-size: 19px; }
@@ -213,8 +201,7 @@ footer a:hover { color: var(--accent); }
       <a href="#intro">Home</a>
       <a href="#about">About</a>
       <a href="#experience">Experience</a>
-      <a href="#software">Software</a>
-      <a href="#life">Life</a>
+      <a href="#software">Projects</a>
     </div>
     <div class="icons">
       <a href="mailto:dgoumtsop@gmail.com" aria-label="Email"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg></a>
@@ -234,7 +221,7 @@ footer a:hover { color: var(--accent); }
     </div>
     <div>
       <h1 class="intro-title" aria-label="hi, damaris here.">hi, <span class="name" id="typed-name"></span><span id="typed-rest"></span><span class="caret"></span></h1>
-      <p class="intro-sub">Software engineer in the DC area. I build <b>backend systems and data pipelines</b> that need to hold up, most recently at the U.S. Senate. CS at George Mason, class of 2027.</p>
+      <p class="intro-sub">I'm a Computer Science student at George Mason University, class of 2027. I like building <b>backend systems</b> and finding out exactly where they break.</p>
       <a class="say-hi" href="mailto:dgoumtsop@gmail.com">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/></svg>
         Say hi!
@@ -249,15 +236,17 @@ footer a:hover { color: var(--accent); }
       <div class="section-header fade"><h2>/ about me</h2></div>
       <div class="about fade">
         <div>
-          <p>I'm a Computer Science student at <a href="https://www.gmu.edu" target="_blank">George Mason University</a>, graduating in May 2027. I've spent the last two summers at the <span class="hl">U.S. Senate</span>, first as an IT intern and then as a software engineering intern, building the pipelines and validation that keep asset and financial data correct. Before that I was a systems engineering intern at <span class="hl">NASA L'SPACE</span>.</p>
-          <p>On my own I build backend systems: an API gateway in Go, a soccer prediction model with an audit ledger, and now a research project on neural-network verification. Here are some technologies I've been working with:</p>
+          <p>Hi there! I'm Damaris, a Computer Science student at <a href="https://www.gmu.edu" target="_blank">George Mason University</a>, graduating in May 2027.</p>
+          <p>I've spent the last two summers at the <span class="hl">U.S. Senate</span>, first as an IT Intern and then as a Software Engineering Intern, building data pipelines and validation for asset and financial records. Before that, I was a Systems Engineering Intern with <span class="hl">NASA L'SPACE Academy</span>.</p>
+          <p>On my own time I build backend projects: a rate-limited API gateway in Go, a Premier League prediction model, and now research on whether neural-network verifiers can be fooled by floating-point error. Some of what I've been working with:</p>
           <ul class="tech">
             <li>Go</li><li>Python</li>
             <li>Java</li><li>SQL / PostgreSQL</li>
             <li>Redis</li><li>FastAPI</li>
             <li>Docker</li><li>Prometheus</li>
           </ul>
-          <p>When I'm not coding, I'm in the gym, playing (or overanalyzing) soccer, or reading. I'm also a <span class="hl">CodePath Tech Fellow</span> and part of ColorStack and NSBE.</p>
+          <p>I'm also a <span class="hl">CodePath Tech Fellow</span> and a member of ColorStack and NSBE. Outside of tech, I'm usually at the gym, playing soccer, or reading.</p>
+          <p>I want to build software people actually use, and understand it the whole way down, to the systems most apps just sit on top of. Give me the hard problem in the stack, the one that has to hold, and I'll own it end to end.</p>
         </div>
         <div class="photo"><img src="https://avatars.githubusercontent.com/u/117386587?v=4" alt="Damaris Goumtsop"></div>
       </div>
@@ -309,7 +298,7 @@ footer a:hover { color: var(--accent); }
   <!-- SOFTWARE -->
   <section id="software">
     <div class="wrap">
-      <div class="section-header wide fade"><h2>/ software</h2><a class="more" href="https://github.com/dgoumtsop?tab=repositories" target="_blank">View all projects →</a></div>
+      <div class="section-header wide fade"><h2>/ projects</h2><a class="more" href="https://github.com/dgoumtsop?tab=repositories" target="_blank">View all projects →</a></div>
 
       <div class="carousel fade">
         <button class="arrow prev" aria-label="Previous"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
@@ -358,61 +347,29 @@ footer a:hover { color: var(--accent); }
               <div class="links"><a href="https://soccer-predictor-dy7l.onrender.com" target="_blank">Live API ↗</a><a href="https://github.com/dgoumtsop/Soccer-Predictor" target="_blank">GitHub ↗</a></div>
             </div>
           </div>
+          <div class="slide">
+            <div class="stage"><div>
+              <div class="w-label"><b>status · in progress</b><span>started fall 2026</span></div>
+              <ul class="steps">
+                <li class="done">scope the problem, pick the verifier</li>
+                <li class="now">reproduce a baseline α,β-CROWN run</li>
+                <li>verifier adapter + intermediate-state trace</li>
+                <li>numerical-error-guided attack</li>
+                <li>write up the results, honestly</li>
+              </ul>
+            </div></div>
+            <div class="copy">
+              <div class="overline wip">In progress</div>
+              <h3>Verifier-Probe</h3>
+              <p>Can a neural network be certified safe and still be wrong? Verifiers like α,β-CROWN prove a model's answer can't change inside a region of inputs, but they prove it in exact math while the model runs in float32. I'm building tooling to search for inputs where the two disagree, and to report near-misses as near-misses.</p>
+              <div class="techline">Python · PyTorch · α,β-CROWN · auto_LiRPA</div>
+              <div class="links"><a href="https://github.com/dgoumtsop/Verifier-Probe" target="_blank">GitHub ↗</a></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="cdots"></div>
 
-      <div class="grid">
-        <div class="card fade">
-          <div class="card-top">
-            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <a class="gh" href="https://github.com/dgoumtsop/Verifier-Probe" target="_blank" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7a5.4 5.4 0 0 0-1.5-3.8 5 5 0 0 0-.1-3.8s-1.2-.4-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3 1.5 5.1 1.9 5.1 1.9a5 5 0 0 0-.1 3.8 5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
-          </div>
-          <div class="tagline">● in progress</div>
-          <h4>Verifier-Probe</h4>
-          <p>Research into whether α,β-CROWN's safety certificates still hold when the model actually runs in float32. It searches for adversarial inputs and inspects what the verifier is doing internally.</p>
-          <div class="techline">Python · PyTorch · α,β-CROWN</div>
-        </div>
-        <div class="card fade">
-          <div class="card-top">
-            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <a class="gh" href="https://dgoumtso.netlify.app" target="_blank" aria-label="Open"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg></a>
-          </div>
-          <h4>Portfolio v1: the terminal</h4>
-          <p>My first portfolio was a fake Linux shell where you typed commands to navigate. I loved how original it was, until I didn't. This site is v2.</p>
-          <div class="techline">HTML · CSS · JavaScript</div>
-        </div>
-        <div class="card fade">
-          <div class="card-top">
-            <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-            <a class="gh" href="https://github.com/dgoumtsop/leetcode-solutions" target="_blank" aria-label="GitHub"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7a5.4 5.4 0 0 0-1.5-3.8 5 5 0 0 0-.1-3.8s-1.2-.4-3.9 1.5a13.4 13.4 0 0 0-7 0C6.3 1.5 5.1 1.9 5.1 1.9a5 5 0 0 0-.1 3.8 5.4 5.4 0 0 0-1.5 3.8c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg></a>
-          </div>
-          <h4>LeetCode Solutions</h4>
-          <p>My data structures and algorithms practice, organized by topic and difficulty, in Java and Python.</p>
-          <div class="techline">Java · Python</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LIFE -->
-  <section id="life">
-    <div class="wrap">
-      <div class="section-header fade"><h2>/ off the clock</h2></div>
-      <div class="life">
-        <div class="card fade">
-          <div class="art"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 7v10M18 7v10M3 9v6M21 9v6M6 12h12"/></svg></div>
-          <div class="body"><h4>The gym</h4><p>Lifting keeps me sane. Progressive overload is the most honest feedback loop I know: the weight went up or it didn't.</p></div>
-        </div>
-        <div class="card fade">
-          <div class="art"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="m12 7 4 3-1.5 4.5h-5L8 10z"/><path d="M12 7V3M16 10l3.5-1.5M14.5 14.5 17 18M9.5 14.5 7 18M8 10 4.5 8.5"/></svg></div>
-          <div class="body"><h4>Soccer</h4><p>I play it, watch it, and apparently write statistical models about it.</p></div>
-        </div>
-        <div class="card fade">
-          <div class="art"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 4h6a4 4 0 0 1 4 4v13a3 3 0 0 0-3-3H2zM22 4h-6a4 4 0 0 0-4 4v13a3 3 0 0 1 3-3h7z"/></svg></div>
-          <div class="body"><h4>Reading</h4><p>Always have a book going, usually one that has nothing to do with computers.</p></div>
-        </div>
-      </div>
     </div>
   </section>
 
